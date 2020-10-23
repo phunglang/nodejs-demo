@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const mongoose = require("mongoose");
 
 const config = require('./config/init')
-const apiRoutes = require('./config/routes');
+const apiRoutes = require('./routes');
 
 mongoose.connect(
     'mongodb://localhost/nodejs-demo'
