@@ -1,9 +1,13 @@
 const mongoose = require("mongoose");
 let User = require('../models/user.model');
 
-module.exports = {
-    index: async function(req, res, next) {
-        User.find()
+class UserController {
+    constructor() {
+        this.user = User
+    }
+
+    index = (req, res, next) => {
+        this.user.find()
             .exec()
             .then(result => {
                 res.status(200).json({
@@ -16,9 +20,10 @@ module.exports = {
                     error: error
                 });
             });
-    },
-    show: async function(req, res, next) {
-        User.findById(req.params.id)
+    }
+
+    show = (req, res, next) => {
+        this.user.findById(req.params.id)
             .exec()
             .then(result => {
                 res.status(200).json({
@@ -31,8 +36,9 @@ module.exports = {
                     error: error
                 });
             });
-    },
-    store: async function(req, res, next) {
+    }
+
+    store = (req, res, next) => {
         const data = {
             _id: new mongoose.Types.ObjectId(),
             name: req.body.name,
@@ -52,14 +58,15 @@ module.exports = {
                     error: error
                 });
             });
-    },
-    update: async function(req, res, next) {
+    }
+
+    update = (req, res, next) => {
         const data = {
             name: req.body.name,
             email: req.body.email,
             password: req.body.password
         }
-        User.update({ _id: req.params.id }, { $set: data })
+        this.user.update({ _id: req.params.id }, { $set: data })
             .exec()
             .then(result => {
                 res.status(200).json({
@@ -72,9 +79,10 @@ module.exports = {
                     error: error
                 });
             });
-    },
-    delete: async function(req, res, next) {
-        User.remove({ _id: req.params.id })
+    }
+
+    delete = (req, res, next) => {
+        this.user.remove({ _id: req.params.id })
             .exec()
             .then(result => {
                 res.status(200).json({
@@ -87,5 +95,7 @@ module.exports = {
                     error: error
                 });
             });
-    },
+    }
 };
+
+module.exports = new UserController();
