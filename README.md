@@ -9,5 +9,6 @@ DB_USERNAME=
 DB_PASSWORD=
 
 ## How to run
-npm start
+`npm start`
+
 `localhost:3000/api`
