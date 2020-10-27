@@ -49,7 +49,6 @@ class UserController {
         user.save()
             .then(result => {
                 res.status(201).json({
-                    data: result,
                     message: "Create user succesfully!"
                 });
             })
@@ -70,7 +69,6 @@ class UserController {
             .exec()
             .then(result => {
                 res.status(200).json({
-                    data: result,
                     message: "Update user succesfully"
                 });
             })
@@ -86,7 +84,6 @@ class UserController {
             .exec()
             .then(result => {
                 res.status(200).json({
-                    data: result,
                     message: "Delete user succesfully"
                 });
             })

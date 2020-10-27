@@ -16,6 +16,15 @@ const userSchema = mongoose.Schema({
         type: String,
         required: true
     },
-});
+    linkedin: {
+        type: String,
+        validate: {
+            validator: function(text) {
+                return text.indexOf('https://www.linkedin.com/') === 0
+            },
+            message: 'LinkedIn must start with https://www.linkedin.com/'
+        }
+    }
+}, { timestamps: true });
 
 module.exports = mongoose.model('User', userSchema);
