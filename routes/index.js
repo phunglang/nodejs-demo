@@ -11,10 +11,9 @@ router.get('/', function(req, res) {
 })
 
 const UserController = require('../app/controllers/user.controller');
-const AuthController = require('../app/controllers/auth.controller');
+const AuthController = require('../app/controllers/login.controller');
 
 router.post('/login', auth.optional, AuthController.login);
-router.get('/logout', AuthController.logout);
 
 router.get('/users', UserController.index)
 router.get('/users/:id', UserController.show)
