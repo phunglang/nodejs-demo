@@ -1,7 +1,6 @@
 require('dotenv').config();
 
 module.exports = {
-    dbURL: process.env.DB_CONNECTION + '://' + process.env.DB_HOST + '/' + process.env.DB_DATABASE,
     cors: async(req, res, next) => {
         res.header("Access-Control-Allow-Origin", "*");
         res.header(

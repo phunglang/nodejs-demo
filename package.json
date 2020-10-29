@@ -1,24 +1,38 @@
 {
     "name": "nodejs-demo",
     "version": "1.0.0",
-    "description": "",
+    "description": "Demo nodejs API",
     "main": "index.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "start": "nodemon server.js"
+        "start": "nodemon server.js",
+        "run start": "babel-node server.js"
     },
-    "keywords": [],
-    "author": "",
+    "keywords": [
+        "nodejs-demo"
+    ],
+    "author": "Phung Lang",
     "license": "ISC",
     "dependencies": {
+        "babel-cli": "^6.26.0",
+        "babel-preset-env": "^1.7.0",
+        "bcrypt": "^5.0.0",
         "body-parser": "^1.19.0",
+        "cookie-parser": "^1.4.5",
         "dotenv": "^8.2.0",
+        "ejs": "^3.1.5",
         "express": "^4.17.1",
+        "express-jwt": "^6.0.0",
+        "express-session": "^1.17.1",
         "mongodb": "^3.6.2",
-        "mongoose": "^5.10.9",
-        "morgan": "^1.10.0"
+        "mongoose": "^5.10.11",
+        "morgan": "^1.10.0",
+        "passport": "^0.4.1",
+        "passport-local": "^1.0.0"
     },
     "devDependencies": {
+        "@babel/core": "^7.12.3",
+        "@babel/node": "^7.12.1",
         "nodemon": "^2.0.6"
     }
 }

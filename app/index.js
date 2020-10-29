@@ -1,38 +1,43 @@
 const express = require('express');
-const app = express();
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
-const mongoose = require("mongoose");
-
-const config = require('../config/init')
+const cookieParser = require('cookie-parser');
+const connectDB = require('../config/connectDB');
+const config = require('../config/init.config')
 const apiRoutes = require('../routes');
+const session = require('express-session');
+const app = express();
 
-mongoose.connect(
-    'mongodb://localhost/nodejs-demo'
-);
-mongoose.Promise = global.Promise;
-
+connectDB();
+require('./models/user.model');
 app.use(morgan('dev'));
+app.use(session({
+    secret: process.env.SESSION_SECRET || 'keyboard cat',
+    resave: true,
+    saveUninitialized: true,
+    cookie: {
+        maxAge: 60000
+    }
+}));
+require('dotenv').config();
+require('../config/passport.config')(app);
 app.use(bodyParser.urlencoded({
     extended: false
 }));
 app.use(bodyParser.json());
-
+app.use(cookieParser());
 app.use(config.cors);
-
 app.use('/api/', apiRoutes);
-
 app.use((req, res, next) => {
     const error = new Error('Not found');
     error.status = 404;
     next(error);
 });
-
-app.use((error, req, res, next) => {
-    res.status(error.status || 500);
+app.use((err, req, res) => {
+    res.status(err.status || 500);
     res.json({
         error: {
-            message: error.message
+            message: err.message
         }
     });
 })

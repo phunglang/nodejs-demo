@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-let User = require('../models/user.model');
+const User = require('../models/user.model');
 
 class UserController {
     constructor() {
