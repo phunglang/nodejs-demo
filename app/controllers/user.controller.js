@@ -10,6 +10,9 @@ class UserController {
         this.user.find()
             .exec()
             .then(result => {
+                if (!result) {
+                    return res.sendStatus(404);
+                }
                 res.status(200).json({
                     data: result,
                     message: "Succesfully!"
@@ -83,7 +86,7 @@ class UserController {
         this.user.remove({ _id: req.params.id })
             .exec()
             .then(result => {
-                res.status(200).json({
+                res.status(204).json({
                     message: "Delete user succesfully"
                 });
             })

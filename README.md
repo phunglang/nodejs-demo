@@ -8,7 +8,9 @@ DB_DATABASE=nodejs-demo
 DB_USERNAME=
 DB_PASSWORD=
 
+SESSION_SECRET=
+
 ## How to run
-`npm start`
+`npm run start`
 
 `localhost:3000/api`

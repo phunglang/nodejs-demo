@@ -5,19 +5,17 @@ const User = require('../models/user.model');
 class AuthController {
     logout = (req, res) => {
         req.logout();
-        res.redirect('/');
+        res.redirect('/api');
     }
 
     login = (req, res, next) => {
-        return passport.authenticate('local.login', { session: false }, (err, user, info) => {
+        passport.authenticate('local.login', { session: false }, (err, user, info) => {
             if (err) return next(err);
             if (user) {
                 user.token = user.generateJWT();
                 return res.status(200).json({ user: user.toAuthJSON() });
             }
-            return res.status(422).json({
-                message: info.errors
-            });
+            return res.status(422).json(info);
         })(req, res, next);
     }
 
