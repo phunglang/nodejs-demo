@@ -11,7 +11,7 @@ router.get('/', function(req, res) {
 })
 
 const UserController = require('../app/controllers/user.controller');
-const AuthController = require('../app/controllers/login.controller');
+const AuthController = require('../app/controllers/auth.controller');
 
 router.post('/login', auth.optional, AuthController.login);
 

@@ -1,6 +1,6 @@
 const passport = require("passport");
 
-class LoginController {
+class AuthController {
     login = (req, res, next) => {
         passport.authenticate('local.login', { session: false }, (err, user, info) => {
             if (err) return next(err)
@@ -13,4 +13,4 @@ class LoginController {
     }
 }
 
-module.exports = new LoginController();
+module.exports = new AuthController();
